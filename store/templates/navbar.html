@@ -18,6 +18,13 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">درباره ما</a></li>
             </ul>
             <form class="d-flex me-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">خروج</a></li>
+        {% else %}
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">ورود</a></li>
+        {% endif %}
+                </ul>
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     سبد خرید
