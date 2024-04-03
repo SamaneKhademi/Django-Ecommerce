@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+
+<div class="container">
+<br>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <br>
+                    <p class="card-text">{{ product.description }}</p>
+
+                    {% if product.is_sale %}
+                        <!-- Product price-->
+                        <strike class="text-secondary">قیمت : {{ product.price | intcomma }} تومان</strike>
+                        <br>
+                        قیمت : {{ product.sale_price | intcomma }} تومان
+                    {% else %}
+                        قیمت : {{ product.price | intcomma }} تومان
+                    {% endif %}
+                <br><br>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">بازگشت به صفحه اصلی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
