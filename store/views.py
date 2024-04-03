@@ -1,11 +1,24 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .forms import SignUpForm
+
+def category(request, foo):
+    # Replace hyphens with spaces
+    foo = foo.replace("-", " ")
+    # Greb the category from the url
+    try:
+        # Look up the category
+        category = Category.objects.get(name=foo)
+        products = Product.objects.filter(category=category)
+        return render(request, 'category.html', {"products": products, 'category': category})
+    except:
+        messages.success(request, 'این دسته بندی وجود ندارد')
+        return redirect('home')
 
 def product(request, pk):
     product = Product.objects.get(id=pk)
