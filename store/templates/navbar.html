@@ -22,6 +22,7 @@
         {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">خروج</a></li>
         {% else %}
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'register' %}">ثبت نام</a></li>
                     <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">ورود</a></li>
         {% endif %}
                 </ul>
