@@ -8,7 +8,7 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانـــه</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">محصولات </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align: right">
                         <li><a class="dropdown-item" href="{% url 'home' %}">همه محصولات</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{% url 'category' 'لپ-تاپ' %}">لپ تاپ</a></li>
@@ -26,11 +26,11 @@
                     <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">ورود</a></li>
         {% endif %}
                 </ul>
-                <button class="btn btn-outline-dark" type="submit">
+                <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark">
                     <i class="bi-cart-fill me-1"></i>
                     سبد خرید
                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
+                </a>
             </form>
         </div>
     </div>
