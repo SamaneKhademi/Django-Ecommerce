@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-md-2">تعداد : </div>
                     <div class="col-md-2">
-                        <select class="form-select form-select-sm" id="qty-cart">
+                        <select class="form-select form-select-sm" id="select{{ product.id }}">
                             <option selected>
                                 {% for key, value in quantities.items %}
                                     {% if key == product.id|slugify %}
@@ -59,6 +59,7 @@
                 </div>
                 <br><br>
                             <a href="{% url 'home' %}" class="btn btn-secondary">بازگشت به صفحه اصلی</a>
+                            <button type="button" data-index="{{ product.id }}" class="btn btn-secondary update-cart">بروزرسانی</button>
 
                         </div>
                     </div>
@@ -72,5 +73,33 @@
     {% endif %}
     </div>
 
+<script>
+// Check if button pressed
+$(document).on('click', '.update-cart', function (e){
+    e.preventDefault();
+    // Grab the product id
+    var productid = $(this).data('index');
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url 'cart_update' %}',
+        data: {
+            product_id: $(this).data('index'),
+            product_qty: $('#select' + productid + ' option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+
+        success: function(json){
+            //console.log(json)
+            //document.getElementById("cart_quantity").textContent = json.qty
+            location.reload();
+        },
+        error: function(xhr, errmsg, err){
+
+        }
+    });
+})
+</script>
 
 {% endblock %}
