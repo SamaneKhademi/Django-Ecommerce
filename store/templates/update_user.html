@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-4">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">بروزرسانی اطلاعات</h1>
+                <br>
+                <p class="lead fw-normal text-white-50 mb-0">بروزرسانی صفحه کاربری</p>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <center>
+                <div class="col-5">
+                    <br><br><br>
+
+                    <form method="post" action="{% url 'update_user' %}">
+                        {% csrf_token %}
+
+                        {{ user_form.as_p }}
+                        <br>
+                        <button type="submit" class="btn btn-secondary">بروزرسانی اطلاعات</button>
+
+                    </form>
+
+                    <br><br>
+                </div>
+            </center>
+        </div>
+    </div>
+{% endblock %}
