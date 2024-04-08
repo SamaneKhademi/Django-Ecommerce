@@ -1,7 +1,36 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
 
+
+class ChangePasswordForm(SetPasswordForm):
+    class Meta():
+        model = User
+        fields = ['new_password1', 'new_password2']
+
+    new_password1 = forms.CharField(
+        label='',
+        help_text='<ul class="form-text text-muted small"><li>رمز عبور باید حداقل 8 کاراکتر باشد</li><li>رمز عبور باید شامل عدد و حروف باشد</li></ul>',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'name': 'password',
+                'type': 'password',
+                'placeholder': 'رمز عبور جدید'
+            }
+        )
+    )
+    new_password2 = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'name': 'password',
+                'type': 'password',
+                'placeholder': 'تکرار رمز عبور جدید'
+            }
+        )
+    )
 
 class UpdateUserForm(UserChangeForm):
     # Hide password
@@ -54,7 +83,7 @@ class SignUpForm(UserCreationForm):
     )
     password1 = forms.CharField(
         label='',
-        help_text='<ul class="form-text text-muted small"><li>رمز عبور باید حداقل 8 کاراکتر باشد</li><li>رمز عبور نمیتواند فقط عدد باشد</li></ul>',
+        help_text='<ul class="form-text text-muted small"><li>رمز عبور باید حداقل 8 کاراکتر باشد</li><li>رمز عبور باید شامل عدد و حروف باشد</li></ul>',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
