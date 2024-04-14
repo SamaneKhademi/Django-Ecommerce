@@ -7,7 +7,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانـــه</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">محصولات </a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">دسته بندی محصولات </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align: right">
                         <li><a class="dropdown-item" href="{% url 'category_summary' %}">همه محصولات</a></li>
                         <li><hr class="dropdown-divider" /></li>
@@ -23,6 +23,7 @@
                         <li><a class="dropdown-item" href="{% url 'category' 'پرینتر' %}">پرینتر</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">جستجوی محصولات</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">درباره ما</a></li>
             </ul>
             <form class="d-flex me-auto">
@@ -30,12 +31,12 @@
         {% if user.is_authenticated %}
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحه کاربری </a>
+                        <a class="btn btn-outline-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">حساب کاربری </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align: right">
                             <li><a class="dropdown-item" href="{% url 'update_user' %}">صفحه کاربری</a></li>
                             <li><a class="dropdown-item" href="{% url 'update_info' %}">اطلاعات کاربری</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">خروج</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">خروج از حساب کاربری</a></li>
                         </ul>
                     </li>
 
