@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'store',
-    'cart'
+    'cart',
+    'payment'
 ]
 
 MIDDLEWARE = [
