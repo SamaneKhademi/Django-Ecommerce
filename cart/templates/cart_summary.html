@@ -69,7 +69,13 @@
             <br>
         {% endfor %}
 
-        <h3>مبلغ کل : {{ totals | intcomma }} تومان</h3>
+        <div align="right">
+            <h3>مبلغ کل : {{ totals | intcomma }} تومان</h3>
+            <br>
+            <a href="{% url 'checkout' %}" class="btn btn-success">بررسی صورتحساب</a>
+        </div>
+
+
         <br><br><br>
 
     {% else %}

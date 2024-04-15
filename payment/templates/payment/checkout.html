@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">بررسی صورتحساب</h1>
+            <br>
+            <p class="lead fw-normal text-white-50 mb-0">سفارشات خود را بررسی کنید</p>
+        </div>
+    </div>
+</header>
+    <br>
+    <div class="container">
+        <div class="row">
+        <center>
+                <div class="col-10">
+                    <div class="card">
+                        <div class="card-header">
+                        خلاصه سفارشات
+                        </div>
+                        <div class="card-body" align="right">
+                            {% for product in cart_products %}
+                                {{ product.name }}:
+                                    {% if product.is_sale %}
+                                        قیمت : {{ product.sale_price | intcomma }} تومان
+                                    {% else %}
+                                        قیمت : {{ product.price | intcomma }} تومان
+                                    {% endif %}
+                                <br>
+                                <small>
+                                تعداد:
+                                    {% for key, value in quantities.items %}
+                                        {% if key == product.id|slugify %}
+                                            {{ value }}
+                                    {% endif %}
+                                {% endfor %}
+                                </small><br><br>
+                            {% endfor %}
+                        مبلغ کل : {{ totals | intcomma }} تومان
+                        <br><br>
+                        <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">بازگشت به سبد خرید</a>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="card">
+                        <div class="card-header">
+                        اطلاعات صورتحساب
+                        </div>
+                        <div class="card-body">
+                            {{ shipping_form.as_p }}
+
+                        </div>
+                    </div>
+                <br>
+                    <a href="" class="btn btn-secondary">ادامه</a>
+                <br><br>
+                </div>
+        </center>
+        </div>
+    </div>
+
+{% endblock %}
