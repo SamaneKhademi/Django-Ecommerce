@@ -6,9 +6,9 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-4">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">بررسی صورتحساب</h1>
+            <h1 class="display-4 fw-bolder">اطلاعات صورتحساب</h1>
             <br>
-            <p class="lead fw-normal text-white-50 mb-0">سفارشات خود را بررسی کنید</p>
+            <p class="lead fw-normal text-white-50 mb-0">صورتحساب خود را بررسی کنید</p>
         </div>
     </div>
 </header>
@@ -41,7 +41,7 @@
                             {% endfor %}
                         مبلغ کل : {{ totals | intcomma }} تومان
                         <br><br>
-                        <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">بازگشت به سبد خرید</a>
+                        <a href="{% url 'cart_summary' %}" class="btn btn-outline-secondary">بازگشت به سبد خرید</a>
                         </div>
                     </div>
                     <br><br>
@@ -49,16 +49,33 @@
                         <div class="card-header">
                         اطلاعات صورتحساب
                         </div>
-                        <div class="card-body">
-                            <form method="post" action="{% url 'billing_info' %}">
-                            {% csrf_token %}
-                            {{ shipping_form.as_p }}
+                        <div class="card-body" align="right">
+
+                            نام : {{ shipping_info.shipping_full_name }}<br>
+                             ایمیل :{{ shipping_info.shipping_email }}<br>
+                             آدرس 1 :{{ shipping_info.shipping_address1 }}<br>
+                             آدرس 2 :{{ shipping_info.shipping_address2 }}<br>
+                             شهر :{{ shipping_info.shipping_city }}<br>
+                             منطقه :{{ shipping_info.shipping_state }}<br>
+                             کدپستی :{{ shipping_info.shipping_zipcode }}<br>
+                             کشور :{{ shipping_info.shipping_country }}<br><br>
+                            <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">بروزرسانی صورتحساب</a>
 
                         </div>
                     </div>
                 <br>
-                    <button type="submit" class="btn btn-secondary">ادامه</button>
-                            </form>
+                <div class="card">
+                        <div class="card-header">
+                        اطلاعات پرداخت
+                        </div>
+                        <div class="card-body" align="right">
+                            {{ billing_form.as_p }}
+
+                        </div>
+                    </div>
+                <br>
+                    <a href="" class="btn btn-secondary">پرداخت</a>
+
                 <br><br>
                 </div>
         </center>
