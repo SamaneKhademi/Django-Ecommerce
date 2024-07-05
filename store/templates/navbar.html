@@ -28,6 +28,7 @@
             </ul>
             <form class="d-flex me-auto">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         {% if user.is_authenticated %}
 
                     <li class="nav-item dropdown">
@@ -39,6 +40,19 @@
                             <li><a class="dropdown-item" href="{% url 'logout' %}">خروج از حساب کاربری</a></li>
                         </ul>
                     </li>
+
+            {% if user.is_superuser %}
+
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-outline-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">سفارشات </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align: right">
+                            <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">سفارشات ارسال شده</a></li>
+                            <li><a class="dropdown-item" href="{% url 'not_shipped_dash' %}">سفارشات ارسال نشده</a></li>
+                        </ul>
+                    </li>
+
+            {% endif %}
+
                 </ul>
 
         {% else %}
