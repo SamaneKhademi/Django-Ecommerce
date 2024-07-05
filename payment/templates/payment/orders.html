@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Header-->
+
+    <div class="container">
+        <div class="row">
+            <center>
+                <div class="col-8">
+                    <br><br>
+                    <div class="card">
+                        <div class="card-header">
+                        سفارش   {{ order.id }} - {{ order.amount_paid }} تومان
+                        </div>
+                        <div class="card-body">
+                            Email: {{ order.email }}<br>
+                        {% if order.date_shipped %}
+                            Date shipped: {{ order.date_shipped }}
+                        {% else %}
+                            Date ordered: {{ order.date_ordered }}
+                        {% endif %}
+                            <br><br>
+                            {{ order.full_name }}<br>
+                        <pre>{{ order.shipping_address }}</pre><br>
+
+                        {% for item in items %}
+                            {{ item.product }}<br>{{ item.quantity }} عدد - {{ item.price }} تومان<br>
+
+
+                        {% endfor %}
+
+
+                        </div>
+                    </div>
+                    <br>
+                    <br><br>
+                </div>
+            </center>
+        </div>
+    </div>
+{% endblock %}
