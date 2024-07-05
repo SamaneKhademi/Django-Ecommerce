@@ -24,9 +24,24 @@
 
                         {% for item in items %}
                             {{ item.product }}<br>{{ item.quantity }} عدد - {{ item.price }} تومان<br>
-
-
                         {% endfor %}
+
+                        <br><br>
+                        {% if not order.shipped %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="shipping_status" value="true">
+                                <button type="submit" class="btn btn-success">انتخاب بعنوان ارسال شده</button>
+                            </form>
+
+                        {% else %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="shipping_status" value="false">
+                                <button type="submit" class="btn btn-danger">انتخاب بعنوان ارسال نشده</button>
+                            </form>
+
+                        {% endif %}
 
 
                         </div>

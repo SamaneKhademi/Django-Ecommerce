@@ -16,6 +16,7 @@
                                 <th scope="col">قیمت</th>
                                 <th scope="col">ایمیل مشتری</th>
                                 <th scope="col">تاریخ ارسال</th>
+                                <th scope="col">ارسال شده</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +26,14 @@
                                 <td>{{ item.amount_paid }} تومان</td>
                                 <td>{{ item.email }}</td>
                                 <td>{{ item.date_shipped }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="shipping_status" value="false">
+                                        <input type="hidden" name="num" value={{ item.id }}>
+                                        <button type="submit" class="btn btn-danger btn-sm">انتخاب بعنوان ارسال نشده</button>
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
