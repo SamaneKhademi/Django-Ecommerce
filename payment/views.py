@@ -4,7 +4,7 @@ from payment.forms import ShippingForm, PaymentForm
 from payment.models import ShippingAddress, Order, OrderItem
 from django.contrib.auth.models import User
 from django.contrib import messages
-from store.models import Product
+from store.models import Product, Profile
 import datetime
 
 def orders(request, pk):
@@ -134,14 +134,15 @@ def process_order(request):
                     # Delete the key
                     del request.session[key]
 
-
-
-
-
-
+            # Delete cart from database(old_cart field)
+            current_user = Profile.objects.filter(user__id=request.user.id)
+            # Delete shopping cart in database(old_cart field)
+            current_user.update(old_cart="")
 
             messages.success(request, 'سفارش شما انجام شد.')
             return redirect('home')
+
+
         else:
             # Not logged in
             # Create order
